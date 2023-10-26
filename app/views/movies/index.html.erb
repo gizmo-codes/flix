@@ -2,7 +2,11 @@
     <%# Notice here we do not include `=` in the templating language, as we are not displaying a result, we are simply running the code %>
     <% @movies.each do |movie| %>
         <%# Displaying a results/substitution of 'event', so '=' is necessary. %>
-        <li><%= movie %></li> 
+        <li>
+            <strong>Title: <%= movie.title %></strong> 
+            | Rating: <%= movie.rating %> 
+            | Gross: <%= number_to_currency(movie.total_gross, precision:0) %>
+        </li> 
     <%# No substitution again %>
     <% end %>
 </ul>
