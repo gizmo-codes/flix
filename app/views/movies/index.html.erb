@@ -3,6 +3,8 @@
         <th>Title</th>
         <th>Ratings</th>
         <th>Gross</th>
+        <th>Release Date</th>
+        <th>Description</th>
     </tr>
     <%# Notice here we do not include `=` in the templating language, as we are not displaying a result, we are simply running the code %>
     <% @movies.each do |movie| %>
@@ -11,6 +13,8 @@
             <td> <%= movie.title %> </td>
             <td> <%= movie.rating %> </td>
             <td> <%= number_to_currency(movie.total_gross, precision:0) %> </td>
+            <td> <%= movie.release_date.strftime("%D") %> </td>
+            <td> <%= movie.description %> </td>
         </tr>
     <%# No substitution again %>
     <% end %>
