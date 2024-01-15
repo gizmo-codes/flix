@@ -16,7 +16,7 @@
     -->
     <%# Notice here we do not include `=` in the templating language, as we are not displaying a result, we are simply running the code %>
     <% @movies.each do |movie| %>
-        <%# Displaying a results/substitution of 'event', so '=' is necessary. %>
+        <%# Displaying a results/substitution of 'movie' attributes, so '=' is necessary. %>
         <tr>
             <td> <%= movie.title %> </td>
             <td> <%= movie.rating %> </td>
