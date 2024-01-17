@@ -1,3 +1,13 @@
+<!-- Static Example
+<h1> Movies </h1>
+<ul>
+    <li>Iron Man</li>
+    <li>Superman</li>
+    <li>Spider-Man</li>
+</ul>
+-->
+
+<!-- Dynamic Example
 <table>
     <tr>
         <th>Title</th>
@@ -6,14 +16,6 @@
         <th>Release Date</th>
         <th>Description</th>
     </tr>
-    <!--
-    <h1> Movies </h1>
-    <ul>
-        <li>Iron Man</li>
-        <li>Superman</li>
-        <li>Spider-Man</li>
-    </ul>
-    -->
     <%# Notice here we do not include `=` in the templating language, as we are not displaying a result, we are simply running the code %>
     <% @movies.each do |movie| %>
         <%# Displaying a results/substitution of 'movie' attributes, so '=' is necessary. %>
@@ -27,3 +29,41 @@
     <%# No substitution again %>
     <% end %>
 </table>
+-->
+
+<!-- Dynamic Example with Article - Better looking layout -->
+<style>
+    th {
+        text-align: left;
+    }
+
+    #desc {
+        font-style: italic;
+        font-size: 18px;
+    }
+</style>
+<h1> Movie Reviews (<%=pluralize(@movies.size, "result")%>). </h1>
+<%# Notice here we do not include `=` in the templating language, as we are not displaying a result, we are simply running the code %>
+<% @movies.each do |movie| %>
+<article>
+    <%# Displaying the results/substitution of 'movie' attributes, so '=' is necessary. %>
+    <header>
+        <h2><%= movie.title %></h2>
+    </header>
+    <p id="desc"><%= movie.description %></p>
+    <table>
+        <tr>
+            <th>Rating:</th>
+            <td><%= movie.rating %></td>
+        </tr>
+        <tr>
+            <th>Total Gross:</th>
+            <td> <%= number_to_currency(movie.total_gross, precision:0) %> | <%= format_total_gross(movie) %> </td>
+        </tr>
+        <tr>
+            <th>Release Date:</th>
+            <td> <%= movie.release_date.strftime("%B %e, %Y") %> - (<%=time_ago_in_words(movie.release_date.strftime("%Y-%m-%d"))%>) </td>
+        </tr>
+    </table>
+</article>
+<% end %>
